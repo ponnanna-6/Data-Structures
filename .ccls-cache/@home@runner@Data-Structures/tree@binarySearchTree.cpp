@@ -7,6 +7,21 @@ struct Node{
     struct Node *left, *right;
 };
 
+int height(struct Node* root){
+  if(root==NULL)return 0;
+  int leftH, rightH;
+  
+  leftH=height(root->left);
+  rightH=height(root->right);
+  return max(leftH, rightH)+1;
+  
+}
+
+void boundary(struct Node* root){
+  //Code pending
+  
+}
+
 struct Node *create(int key){
   struct Node *newNode= (struct Node*)malloc(sizeof(struct Node));
   newNode->data=key;
@@ -100,11 +115,12 @@ int main() {
     
   cout<<"INORDER TRANSVERSAL:\n";    
   inorder(root);  
+  cout<<endl;
   cout<<"\nEnter Node to delete: ";
   cin>>del;
   root=deleteNode(root, del);
   cout<<"\nINORDER TRANSVERSAL AFTER DELETION:\n";
   inorder(root);
-  cout<<"\n";
+  cout<<"\nHeight: "<<height(root)-1;
   return 0;
 }
